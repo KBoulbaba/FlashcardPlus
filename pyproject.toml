@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "flashcardplus"
+version = "0.1.0"
+description = "FlashcardPlus transforms your study routine! Effortlessly create and import flashcards with CSV files, easily integrate new data, and keep your study sets fresh. Ideal for students, professionals, and learners, it offers a sleek, intuitive interface with powerful features. Supercharge your learning now!"
+authors = ["BKops <kahila.boulbaba.pro@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+sqlmodel = "^0.0.21"
+tk = "^0.1.0"
+pydantic = "^2.8.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
