@@ -37,5 +37,5 @@ class Flashcard(BaseModel, table=True):
     cat_id: int = Field(foreign_key="category.id")
     question: str
     answer: str
-    number_of_view: int
+    number_of_view: int = Field(default=0)
     last_view_datetime: datetime = Field(default_factory=datetime.utcnow)

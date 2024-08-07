@@ -33,6 +33,7 @@ def load_data(db_url: str, resources_path: str):
 
     with Session(engine) as session:
         resources_dir = Path(resources_path)
+        print(resources_dir)
         process_cert_dirs(resources_dir, session, cert_repo, cat_repo)
 
 
@@ -52,9 +53,10 @@ def process_cert_dirs(resources_dir, session, cert_repo, cat_repo):
         None.
     """
     for cert_dir in resources_dir.iterdir():
+        print(cert_dir)
         if cert_dir.is_dir() and cert_dir.name != "corrections":
             cert_name: str = cert_dir.name
-
+            print(cert_name)
             cert: List[Certification] = cert_repo.get_by_name(cert_name)
             if not cert:
                 cert = Certification(name=cert_name)
@@ -91,12 +93,15 @@ def process_csv_files(cert_dir, session, cert_id, cat_repo):
             session.commit()
 
         cat_id: int = cat.id
-
+        print("cat_id:", cat_id)
         with file_path.open(newline="", encoding="utf-8") as csvfile:
-            reader = csv.reader(csvfile)
+            reader = csv.reader(csvfile, delimiter=";")
+            print(reader)
             for row in reader:
+                print(row)
                 if len(row) >= 2:
                     question, answer = row[0], row[1]
+                    print(question, answer)
                     flashcard = Flashcard(cat_id=cat_id, question=question, answer=answer)
                     session.add(flashcard)
             session.commit()
